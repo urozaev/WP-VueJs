@@ -1,0 +1,148 @@
+html, body 
+  height: 100%
+  padding-top: 10px
+  background-color: #e6ecf1
+  color: #2d2d2d
+  font-family: 'Open Sans', Arial, sans-serif
+  font-size: 18px
+  line-height: 1.5
+
+h1 
+  text-align: center
+
+#app  
+  height: 100%
+  padding: 0
+  margin: 0
+  text-align: center
+  list-style: none
+  position: relative
+
+  .button 
+    margin-bottom: 20px
+
+
+  .user 
+    margin: 0 auto
+    padding-bottom: 15px
+    text-align: left
+    display: flex
+    flex-direction: column
+
+    &__filtering
+      padding-top: 10px
+
+    &__info 
+      margin-bottom: 0
+      border-radius: 0
+      background-color: #fff
+      border-radius: 5px
+      -webkit-box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1)
+      box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1)
+      color: #4a4a4a
+      display: block
+      padding: 1.25rem
+
+    &__list
+      display: flex
+      flex-flow: row wrap
+      max-width: 80%
+      margin: 0 auto
+      list-style: none
+      padding: 30px 0 0
+
+    &:hover 
+      cursor: pointer
+      
+    &-form 
+      display: flex
+      flex-direction: column
+
+      input, select 
+        padding: 5px
+        margin-bottom: 10px
+
+      .archive 
+        display: flex
+        align-items: center
+
+        input 
+          margin-bottom: 0
+
+    &__edit-btn
+      height: 40px
+      margin-top: 20px
+      background-color: #49b293
+
+    &__remove-btn
+      background-color: #dc3545
+
+  .user:nth-last-child(1), .user:nth-last-child(2)
+    margin: 0
+
+  .row
+    margin: 0
+    justify-content: center
+
+  .add-button
+    margin-top: 10px
+
+  .content b, .content strong 
+    color: #42b983
+
+  
+  #sorting, #filter 
+    text-align: center
+    margin-bottom: 10px
+
+  .sort-button 
+    font-size: 13px
+    background: #999
+    padding: 5px 10px
+    border-radius: 7px
+    cursor: pointer
+    border: none
+    color: #fff
+
+
+  .sort-button:not(:last-of-type)  
+    margin-right: 10px
+
+
+  .sort-button:hover  
+    background: #888
+
+
+  .sort-button:focus, .sort-button:active  
+    background: #49b293
+
+
+  button.active, button.active:hover 
+    background: #49b293
+
+  .button-box 
+    padding-top: 20px
+    width: 100%
+    text-align: center
+
+  .form-input-box
+    margin: 0 auto
+
+.fade:not(.show)
+  opacity: 1
+
+// #modal
+//   display: block
+
+@media screen and ( max-width: 500px )
+  h1
+    font-size: 1.5rem
+
+  #filter, #sorting
+    display: flex
+    flex-direction: column
+
+    .sort-button:not(:last-of-type), .sort-button
+      margin-right: 0
+      border-radius: 0
+  

@@ -23,6 +23,7 @@ const app = new Vue({
             item: {name: '',phone: '',birthday: '',role: '',archive: ''},
             edit: false,
             editIndex:-1,
+            newUser: null
         }
         },
     mounted: function() {
@@ -39,18 +40,18 @@ const app = new Vue({
       
       if(!this.edit)
         {
-          return;
-        } 
-      this.users[this.editIndex] = this.item;
-      this.edit = false;
-      this.editIndex = -1;
-      this.item = {};
-      this.users.push(this.item);
-      console.log(this.edit)
-      
-      this.saveUsers();
-      
- 
+          this.edit = true;
+          this.editIndex = index;
+          this.item = this.users[index];
+          
+          
+        } else {
+          this.users[this.editIndex] = this.item;
+          this.edit = false;
+          this.editIndex = -1;
+        }
+        this.users.push(this.item);
+        this.saveUsers();
       $('#modal').modal('hide');
       e.preventDefault();
 		},
@@ -61,9 +62,11 @@ const app = new Vue({
        
 
       $('#modal').modal('show');
+
     },
     removeUser(index) {
-      this.users.splice(x, 1);
+      this.editIndex = index;
+      this.users.splice(index, 1);
       this.saveCats();
     },
     saveUsers() {

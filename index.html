@@ -80,10 +80,10 @@
                         <input type="checkbox" value="В архиве" name="archive" id="archive" v-model="item.isArchive" />
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary" @click="editItem()"><span>OK</span></button>
+                  <button type="submit" class="btn btn-primary" @submit="editItem()"><span>OK</span></button>
                   <button type="button" class="btn btn-default" data-dismiss="modal" @click="editCancel" aria-label="Close"><span>Отмена</span></button>
                   <br>
-                  <button type="submit" class="user__remove-btn btn btn-primary" @click="removeUser(index)"><span aria-hidden="true">Удалить</span></button>
+                  <button type="submit" class="user__remove-btn btn btn-primary" @click="removeUser"><span aria-hidden="true">Удалить</span></button>
                 </form>
               </div>
             </div>

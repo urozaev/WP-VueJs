@@ -7,15 +7,9 @@ import './sass/main.sass'
 
 
 
-
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'vue'
-// import Vue from 'vue'
-
 window.Vue = require('vue')
 import store from './store/store'
 
-// Vue.component('user-component', require('./components/User.vue').default)
 
 const _ = require('lodash');
 const users =  require('./store/users.json')

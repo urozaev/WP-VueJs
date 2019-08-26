@@ -30,7 +30,7 @@
         <button type="button" class="btn btn-primary add-button" data-toggle="modal" data-target="#modal"><span>Добавить</span></button>
         <div class="col-md-12">
           <ul class="list-group user__list">
-            <li class="col-md-4 list-group-item user" v-for="(item, index) in items" :key='index'>
+            <li class="col-md-4 list-group-item user" v-for="(item, index) in users" :key='index'>
               <div class="content">
                     <span><strong>{{item.name}}</strong></span>
                     <br>
@@ -41,7 +41,7 @@
                     <span> Номер телефона:<br>{{item.phone}}</span>
               </div>
                   
-              <button type="button" class="user__edit-btn btn btn-primary" @click="editItem(index)" @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
+              <button type="button" class="user__edit-btn btn btn-primary" @click="editItem(index)">
                   <span aria-hidden="true">Изменить</span>
               </button>
             </li>
@@ -53,7 +53,7 @@
           <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
               <div class="modal-body">
-                <form id="userForm" class="form-horizontal user-form" @submit="addItem" action="" method="POST">
+                <form id="userForm" class="form-horizontal user-form" @submit="addUser" action="" method="POST">
                   <div class="form-group">
                     <label for="name" class="control-label">Имя пользователя</label>
                     <div class="col-10 form-input-box">
@@ -77,13 +77,13 @@
                     </div>
                     <div class="col-10">
                         <label for="archive" class="control-label">В архиве</label>
-                        <input type="checkbox" value="В архиве" name="archive" id="archive" v-model="item.isArhive" />
+                        <input type="checkbox" value="В архиве" name="archive" id="archive" v-model="item.isArchive" />
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary" @click="show = !show" :aria-expanded="show ? 'true' : 'false'" @click="updateUser"><span>OK</span></button>
+                  <button type="submit" class="btn btn-primary" @click="editItem()"><span>OK</span></button>
                   <button type="button" class="btn btn-default" data-dismiss="modal" @click="editCancel" aria-label="Close"><span>Отмена</span></button>
                   <br>
-                  <button type="submit" class="user__remove-btn btn btn-primary" @click="removeUser"><span aria-hidden="true">Удалить</span></button>
+                  <button type="submit" class="user__remove-btn btn btn-primary" @click="removeUser(index)"><span aria-hidden="true">Удалить</span></button>
                 </form>
               </div>
             </div>

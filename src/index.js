@@ -1,12 +1,13 @@
 import './js/common'
-import $ from 'jquery'
+import $AB from 'jquery'
+import 'bootstrap'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
 import './css/main.css'
 import './sass/main.sass'
 
 
 
-// import 'bootstrap'
+
 // import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'vue'
 // import Vue from 'vue'

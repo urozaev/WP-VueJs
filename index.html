@@ -53,7 +53,7 @@
           <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
               <div class="modal-body">
-                <form id="userForm" class="form-horizontal user-form" @submit="addUser" action="" method="POST">
+                <form id="userForm" class="form-horizontal user-form" @submit.prevent="addUser()" action="" method="GET">
                   <div class="form-group">
                     <label for="name" class="control-label">Имя пользователя</label>
                     <div class="col-10 form-input-box">

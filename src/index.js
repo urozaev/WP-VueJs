@@ -12,39 +12,45 @@ import store from './store/store'
 
 
 const _ = require('lodash');
-const usersList =  require('./store/users.json')
-const strUser = JSON.stringify(usersList)
-const users = localStorage.setItem('usersList', strUser)
+const users = require('./store/users.json');
+// const usersList =  require('./store/users.json')
+// const strUser = JSON.stringify(usersList)
+// const users = localStorage.setItem('usersList', strUser)
 
 const app = new Vue({
     store,
     el: '#app',
     data: function() {
         return {
-            users: JSON.parse(localStorage.getItem('usersList')),
+            // users: JSON.parse(localStorage.getItem('usersList')),
+            users,
             item: {name: '',phone: '',birthday: '',role: '',archive: ''},
             edit: false,
             editIndex: -1,
+            // index: 1,
             newUser: null
         }
         },
     mounted: function() {
-      if (localStorage.getItem('usersList')) {
+      // if (localStorage.getItem('usersList')) {
+        if (localStorage.getItem('users')) {
         try {
-          this.users = JSON.parse(localStorage.getItem('usersList'));
+          // this.users = JSON.parse(localStorage.getItem('usersList'));
+          this.users = JSON.parse(localStorage.getItem('users'));
         } catch(e) {
-          localStorage.removeItem('usersList');
+          // localStorage.removeItem('usersList');
+          localStorage.removeItem('users');
         }
       }
     },
 	methods: {
-		addUser(e) {
-      
+		addUser() {
       if(!this.edit)
         {
-          this.edit = true;
-          this.editIndex = index;
-          this.item = this.users[index];
+          // this.edit = true;
+          // this.editIndex = index;
+          // this.item = this.users[index];
+          this.item.id = this.users.length + 1
           this.users.push(this.item);
     
         } else {
@@ -55,7 +61,9 @@ const app = new Vue({
         
         this.saveUsers();
       $('#modal').modal('hide');
-      e.preventDefault();
+      this.item = {name: '',phone: '',birthday: '',role: '',archive: ''};
+
+      
 		},
 		editItem(index) {
     	this.edit = true;
@@ -69,11 +77,12 @@ const app = new Vue({
     removeUser(index) {
       this.editIndex = index;
       this.users.splice(index, 1);
-      this.saveCats();
+      this.saveUsers();
     },
     saveUsers() {
       const parsed = JSON.stringify(this.users);
-      localStorage.setItem('usersList', parsed);
+      // localStorage.setItem('usersList', parsed);
+      localStorage.setItem('users', parsed);
     },
     editCancel: function(index){
       this.item = {name: '',phone: '',birthday: '',role: '',archive: ''};
@@ -81,21 +90,32 @@ const app = new Vue({
     },
     filterAll() {
       this.users = _.filter(users, function (item) {
-          return users;
+          return JSON.parse(localStorage.getItem('users'));
         })
     },
     filterDesign() {
-      this.users = _.filter(users, function (item) {
-        return item.role === 'designer';
-      })
+      // this.users = _.filter(this.users, function (item) {
+      //   if (this.users.length === 0){
+      //     function f() {
+      //       users = JSON.parse(localStorage.getItem('users'))
+      //       _.filter(users, function(){
+      //         return item.role === 'designer'
+      //       })
+      //     }
+      //   } else {
+      //     return item.role === 'designer'
+      //   }
+      // })
+      let f = this.users.length
+      console.log(f -1)
     },
     filterDeveloper() {
-      this.users = _.filter(users, function (item) {
+      this.users = _.filter(this.users, function (item) {
           return item.role === 'developer';
         })
     },
     filterManager() {
-      this.users = _.filter(users, function (item) {
+      this.users = _.filter(this.users, function (item) {
           return item.role === 'manager';
         })
     },

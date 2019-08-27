@@ -12,26 +12,28 @@ import store from './store/store'
 
 
 const _ = require('lodash');
-const users =  require('./store/users.json')
+const usersList =  require('./store/users.json')
+const strUser = JSON.stringify(usersList)
+const users = localStorage.setItem('usersList', strUser)
 
 const app = new Vue({
     store,
     el: '#app',
     data: function() {
         return {
-            users,
+            users: JSON.parse(localStorage.getItem('usersList')),
             item: {name: '',phone: '',birthday: '',role: '',archive: ''},
             edit: false,
-            editIndex:-1,
+            editIndex: -1,
             newUser: null
         }
         },
     mounted: function() {
-      if (localStorage.getItem('users')) {
+      if (localStorage.getItem('usersList')) {
         try {
-          this.users = JSON.parse(localStorage.getItem('users'));
+          this.users = JSON.parse(localStorage.getItem('usersList'));
         } catch(e) {
-          localStorage.removeItem('users');
+          localStorage.removeItem('usersList');
         }
       }
     },
@@ -43,14 +45,14 @@ const app = new Vue({
           this.edit = true;
           this.editIndex = index;
           this.item = this.users[index];
-          
-          
+          this.users.push(this.item);
+    
         } else {
           this.users[this.editIndex] = this.item;
           this.edit = false;
           this.editIndex = -1;
         }
-        this.users.push(this.item);
+        
         this.saveUsers();
       $('#modal').modal('hide');
       e.preventDefault();
@@ -71,7 +73,7 @@ const app = new Vue({
     },
     saveUsers() {
       const parsed = JSON.stringify(this.users);
-      localStorage.setItem('users', parsed);
+      localStorage.setItem('usersList', parsed);
     },
     editCancel: function(index){
       this.item = {name: '',phone: '',birthday: '',role: '',archive: ''};

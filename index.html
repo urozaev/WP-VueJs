@@ -61,11 +61,11 @@
                     </div>
                     <label for="phone" class="control-label">Телефон</label>
                     <div class="col-10 form-input-box">
-                      <input type="tel" class="form-control" id="phone" ref="field" placeholder="Телефон" v-model="item.phone" required>
+                      <input type="tel" class="form-control" id="phone" placeholder="Телефон" v-model="item.phone" required>
                     </div>
                     <label for="user-birthday" class="control-label">Дата рождения</label>
                     <div class="col-10 form-input-box">
-                        <input type="text" name="birthday" class="form-control" id="birthday" ref="datemask"  placeholder="Дата рождения" v-model="item.birthday" required>
+                        <input type="text" name="birthday" class="form-control" id="birthday" placeholder="Дата рождения" v-model="item.birthday" required>
                     </div>
                     <label for="user-role" class="control-label">Специальность</label>
                     <div class="col-10 form-input-box">
@@ -83,7 +83,7 @@
                   <button type="submit" class="btn btn-primary" @submit="editItem()"><span>OK</span></button>
                   <button type="button" class="btn btn-default" data-dismiss="modal" @click="editCancel" aria-label="Close"><span>Отмена</span></button>
                   <br>
-                  <button type="submit" class="user__remove-btn btn btn-primary" @click="removeUser"><span aria-hidden="true">Удалить</span></button>
+                  <button type="submit" class="user__remove-btn btn btn-primary" @click="removeUser()"><span aria-hidden="true">Удалить</span></button>
                 </form>
               </div>
             </div>
@@ -91,7 +91,6 @@
         </div>
     </div>
 
-    <script src="dist/jquery.inputmask.min.js"></script>
     <script src="dist/app.js"></script>
 </body>
 </html>

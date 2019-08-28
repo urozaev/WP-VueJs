@@ -83,29 +83,65 @@ const app = new Vue({
       const parsed = JSON.stringify(this.users);
       localStorage.setItem('users', parsed);
     },
+    toStorage(){
+      const parsed = JSON.stringify(users);
+      localStorage.setItem('users', parsed)
+    },
     editCancel: function(index){
       this.item = {name: '',phone: '',birthday: '',role: '',isArchive: false};
       this.editIndex = -1;
     },
     filterAll() {
-      this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+      let storage = localStorage.getItem('users');
+      if(storage) {
+        this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
           return JSON.parse(localStorage.getItem('users'));
         })
+      } else {
+        this.toStorage()
+        this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+          return JSON.parse(localStorage.getItem('users'));
+        })
+      }
     },
     filterDesign() {
-      this.users = _.filter(JSON.parse(localStorage.getItem('users')),function (item) {
-        return item.role === 'designer'
-      })
+      let storage = localStorage.getItem('users');
+      if(storage) {
+        this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+          return item.role === 'designer'
+        })
+      } else {
+        this.toStorage()
+        this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+          return item.role === 'designer'
+        })
+      }
     },
     filterDeveloper() {
-      this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
-          return item.role === 'developer';
-        })
+        let storage = localStorage.getItem('users');
+        if(storage) {
+          this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+            return item.role === 'developer'
+          })
+        } else {
+          this.toStorage()
+          this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+            return item.role === 'developer'
+          })
+        }
     },
     filterManager() {
-      this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
-          return item.role === 'manager';
-        })
+        let storage = localStorage.getItem('users');
+        if(storage) {
+          this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+            return item.role === 'manager'
+          })
+        } else {
+          this.toStorage()
+          this.users = _.filter(JSON.parse(localStorage.getItem('users')), function (item) {
+            return item.role === 'manager'
+          })
+        }
     },
     sortByName() {
       this.users = _.sortBy(this.users, ['name']);

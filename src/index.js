@@ -5,6 +5,8 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
 import './css/main.css'
 import './sass/main.sass'
 
+// import Inputmask from "inputmask";  не подрубается, выводит ошибки
+
 
 
 window.Vue = require('vue')
@@ -24,7 +26,7 @@ const app = new Vue({
         return {
             // users: JSON.parse(localStorage.getItem('usersList')),
             users,
-            item: {name: '',phone: '',birthday: '',role: '',archive: ''},
+            item: {name: '',phone: '',birthday: '',role: '',isArchive: false},
             edit: false,
             editIndex: -1,
             // index: 1,
@@ -61,7 +63,7 @@ const app = new Vue({
         
         this.saveUsers();
       $('#modal').modal('hide');
-      this.item = {name: '',phone: '',birthday: '',role: '',archive: ''};
+      this.item = {name: '',phone: '',birthday: '',role: '',isArchive: false};
 
       
 		},
@@ -75,9 +77,12 @@ const app = new Vue({
 
     },
     removeUser(index) {
+      this.edit = true;
+      this.item = this.users[index];
       this.editIndex = index;
-      this.users.splice(index, 1);
-      this.saveUsers();
+      this.users.splice(this.item, 1) //через this.item посмотри
+      // this.users.splice(index, 1);
+      this.saveUsers(); 
     },
     saveUsers() {
       const parsed = JSON.stringify(this.users);
@@ -85,7 +90,7 @@ const app = new Vue({
       localStorage.setItem('users', parsed);
     },
     editCancel: function(index){
-      this.item = {name: '',phone: '',birthday: '',role: '',archive: ''};
+      this.item = {name: '',phone: '',birthday: '',role: '',isArchive: false};
       this.editIndex = -1;
     },
     filterAll() {

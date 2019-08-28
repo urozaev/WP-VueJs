@@ -2,6 +2,8 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
 const webpack = require('webpack')
+// const Inputmask = require('inputmask');
+
 
 module.exports = {
     entry: {
@@ -69,7 +71,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            vue$: 'vue/dist/vue.js'
+            vue$: 'vue/dist/vue.js',
         }
     },
     plugins: [
@@ -80,7 +82,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
-        })
+        }),
+        // new Inputmask()
     ]
 
 }
